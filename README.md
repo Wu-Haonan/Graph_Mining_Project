@@ -8,31 +8,31 @@ Course Project of Graph Mining
 
 
 
-Previous methods depend on the known information of V, D, and J sequences, they first map sequence of repertoire to reference and then determine the class of V and J genes. Then combining more biological knowledge to infer the clonal lineage of repertoire. In this course project, I try to build a denovo pipeline i.e. employing the sequence distance and calling graph-clustering algorithm (we choose [Leidan](https://leidenalg.readthedocs.io/en/stable/intro.html) here). The details can be found in the following section. 
+Previous methods depend on the known information of V, D, and J sequences; they first map sequences in the repertoire to the reference and then determine the class of V and J genes. Then, combining more biological knowledge to infer the clonal lineage of the repertoire. In this course project, I try to build a de novo pipeline, i.e., employing the sequence distance and calling a graph-clustering algorithm (we choose [Leidan](https://leidenalg.readthedocs.io/en/stable/intro.html) here). The details can be found in the following section. 
 
 
 
 ## Ground Truth
 
-1. The original VDJ sequences are stored  `./data/PRJNA324093_Dnr4_10k.fasta`
+1. The original VDJ sequences are stored in `./data/PRJNA324093_Dnr4_10k.fasta`
 
 2. ImmunoTools (https://immunotools.github.io/immunotools/) is used to align and analyze VDJ sequences. The results are stored in `./Alignment_results`. The output we focused on is `compressed_cdr3s.fasta`, which shows all the CDR3 sequences, counts, and corresponding V, J genes. 
 
-3. Run `./clonal_lineage` to generate the ground truth of classification in csv file `ground_truth.csv`. Based on following rules.
+3. Run `./clonal_lineage` to generate the ground truth of classification in the CSV file `ground_truth.csv`. Based on the following rules.
 
-   a. they have same CDR3 length,
+   a. they have the same CDR3 length,
    b. the Hamming distance between their nucleotide sequences is below 10%
-   c. they represent VDJ sequences with identical V and J genes ( Ignore gene alleles).
+   c. They represent VDJ sequences with identical V and J genes (ignoring gene alleles).
 
 ## Pipeline
 
 ### All-vs-all alignment
 
-We call [EdLib](https://martinsos.github.io/edlib/) to implement all-vs-all global alignment. If two string have edit distance $\leq 40$, the two nodes will have an edge and assign the distance as weight for the edge. 
+We call [EdLib](https://martinsos.github.io/edlib/) to implement all-vs-all global alignment. If two strings have edit distance $\leq 40$, the two nodes will have an edge and assign the distance as weight for the edge. 
 
 ### Leiden cluster
 
-We call Leiden algorithms to implement cluster and output the results in `Leiden_cluster.csv`.
+We call Leiden algorithms to implement clustering and output the results in `Leiden_cluster.csv`.
 
 ### Evaluate
 
@@ -48,16 +48,16 @@ Adjusted Rand Index (ARI): -0.0004
 
 ## Refection
 
-The results are not good and close to random. I think it can be interpreted by following reason
+The results are not good and close to random. I think it can be interpreted by the following reason
 
 1. I set the threshold $40$ to connect an edge, which lead to a at least $90\%$​​ identity for most sequences. This threshold may too high, so we cannot capture complete information to cluster. 
-1. Leiden algorithm may not 
+1. The Leiden algorithm may not be suitable for this problem. 
 
 
 
-For further improvements, we can extend it to following directions.
+For further improvements, we can extend it in the following directions.
 
-1. Try to determine better threshold to connect edges. 
-2. Try to explore faster way to speed up the all-vs-all distance calculations. 
-3. Try to develop novel graph-clustering algorithms to adapt to clonal lineage classification problem. 
+1. Try to determine a better threshold to connect edges. 
+2. Try to explore a faster way to speed up the all-vs-all distance calculations. 
+3. Try to develop novel graph-clustering algorithms to adapt to the clonal lineage classification problem. 
 

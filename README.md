@@ -2,6 +2,8 @@
 
 Course Project of Graph Mining
 
+This repo used for course project.
+
 ## Problem statement
 
 **V(D)J recombination** is a fundamental genetic mechanism that enables the adaptive immune system to generate an extraordinarily diverse repertoire of antigen receptors on B and T lymphocytes. By randomly assembling variable (V), diversity (D), and joining (J) gene segments and undergoing somatic hypermutation, these processes produc a vast array of immunoglobulin (Ig) and T cell receptor (TCR) sequences, each with unique antigen-binding specificity. This molecular diversity underlies the immune system’s ability to recognize and respond to an enormous range of pathogens. Accurately reconstructing the immune repertoire—i.e., the full set of antigen receptor sequences present in an individual—is essential for understanding immune responses, tracking clonal expansions in infection or cancer, and developing targeted immunotherapies. High-throughput sequencing and computational reconstruction of V(D)J repertoires have therefore become indispensable tools in immunology and translational medicine.  
